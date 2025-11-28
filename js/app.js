@@ -75,17 +75,81 @@ function updateActiveMenu(pageName) {
   });
 }
 
-// globally listen for navigation events
+// ==========================================
+// INITIALIZATION
+// ==========================================
 document.addEventListener("DOMContentLoaded", () => {
   // Load default page
   navigateTo("leaderboard");
 
-  // Handle menu link clicks
-  document.querySelectorAll(".nav-links a").forEach((link) => {
+  // ========================================
+  // NAVIGATION LINK CLICK HANDLERS
+  // ========================================
+  const allNavLinks = document.querySelectorAll(".nav-links a");
+
+  allNavLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
       const page = e.target.dataset.page;
       navigateTo(page);
+
+      // Close mobile menu if open
+      closeMobileMenu();
     });
   });
+
+  // ========================================
+  // MOBILE MENU TOGGLE
+  // ========================================
+  const navToggle = document.getElementById("navToggle");
+  const mobileOverlay = document.getElementById("mobileOverlay");
+
+  // Toggle button click
+  if (navToggle) {
+    navToggle.addEventListener("click", () => {
+      const navbar = document.querySelector(".navbar");
+      if (navbar && navbar.classList.contains("nav-open")) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    });
+  }
+
+  // Overlay click to close menu
+  if (mobileOverlay) {
+    mobileOverlay.addEventListener("click", closeMobileMenu);
+  }
+
+  // Close menu on Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeMobileMenu();
+    }
+  });
 });
+
+// ==========================================
+// MOBILE MENU FUNCTIONS
+// ==========================================
+function openMobileMenu() {
+  const navbar = document.querySelector(".navbar");
+  const overlay = document.getElementById("mobileOverlay");
+  const body = document.body;
+
+  if (navbar) navbar.classList.add("nav-open");
+  if (overlay) overlay.classList.add("visible");
+  body.classList.add("menu-open");
+  body.style.overflow = "hidden";
+}
+
+function closeMobileMenu() {
+  const navbar = document.querySelector(".navbar");
+  const overlay = document.getElementById("mobileOverlay");
+  const body = document.body;
+
+  if (navbar) navbar.classList.remove("nav-open");
+  if (overlay) overlay.classList.remove("visible");
+  body.classList.remove("menu-open");
+  body.style.overflow = "";
+}

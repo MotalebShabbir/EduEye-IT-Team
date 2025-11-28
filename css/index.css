@@ -413,12 +413,14 @@ footer {
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
+  z-index: 1;
 }
 
 .leaderboard-header h2 {
-  margin: 0;
+  margin: 10px;
   color: var(--secondary);
   font-size: 1.25rem;
+  color: var(--text-white);
 }
 
 .filters {

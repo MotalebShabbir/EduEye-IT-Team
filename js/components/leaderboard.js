@@ -50,7 +50,7 @@ const sampleTasks = [
   {
     id: 1,
     title: "Fix login bug",
-    category: "Bug",
+    category: ["Bug", "Development"],
     assignedTo: "Aisha",
     score: 20,
     date: daysAgoISO(0),
@@ -58,7 +58,7 @@ const sampleTasks = [
   {
     id: 2,
     title: "Add profile page",
-    category: "Development",
+    category: ["Development"],
     assignedTo: "Ravi",
     score: 35,
     date: daysAgoISO(2),
@@ -66,7 +66,7 @@ const sampleTasks = [
   {
     id: 3,
     title: "Write API docs",
-    category: "Documentation",
+    category: ["Documentation"],
     assignedTo: "Aisha",
     score: 10,
     date: daysAgoISO(10),
@@ -74,7 +74,7 @@ const sampleTasks = [
   {
     id: 4,
     title: "Research new auth flow",
-    category: "Research",
+    category: ["Research", "Bug"],
     assignedTo: "Meera",
     score: 25,
     date: daysAgoISO(5),
@@ -82,7 +82,7 @@ const sampleTasks = [
   {
     id: 5,
     title: "Refactor dashboard",
-    category: "Development",
+    category: ["Development"],
     assignedTo: "Ravi",
     score: 15,
     date: daysAgoISO(1),
@@ -90,7 +90,7 @@ const sampleTasks = [
   {
     id: 6,
     title: "Critical bug fix",
-    category: "Bug",
+    category: ["Bug"],
     assignedTo: "Karan",
     score: 40,
     date: daysAgoISO(0),
@@ -98,7 +98,7 @@ const sampleTasks = [
   {
     id: 7,
     title: "Update README",
-    category: "Documentation",
+    category: ["Documentation"],
     assignedTo: "Meera",
     score: 5,
     date: daysAgoISO(20),
@@ -106,7 +106,7 @@ const sampleTasks = [
   {
     id: 8,
     title: "Optimize queries",
-    category: "Development",
+    category: ["Development"],
     assignedTo: "Aisha",
     score: 30,
     date: daysAgoISO(7),
