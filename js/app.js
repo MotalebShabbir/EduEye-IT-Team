@@ -36,7 +36,7 @@ const db = getFirestore(app);
 
 // Componaents import
 import { renderHome } from "./components/home.js";
-//import { renderTask } from "./components/task.js";
+import { renderAuth } from "./components/auth.js";
 //import { renderTaskL ist } from "./components/taskList.js";
 import { renderLeaderboard } from "./components/leaderboard.js";
 
@@ -46,7 +46,7 @@ const root = document.getElementById("app");
 // rename components for easier routing
 const routes = {
   home: renderHome,
-  //task: renderTask,
+  auth: renderAuth,
   //"task-list": renderTaskList,
   leaderboard: renderLeaderboard,
 };
@@ -80,7 +80,7 @@ function updateActiveMenu(pageName) {
 // ==========================================
 document.addEventListener("DOMContentLoaded", () => {
   // Load default page
-  navigateTo("leaderboard");
+  navigateTo("auth");
 
   // ========================================
   // NAVIGATION LINK CLICK HANDLERS

@@ -25,7 +25,7 @@ function leaderboardHTML() {
             <button class="time-btn" data-range="month">Month</button>
             <button class="time-btn" data-range="all">All Time</button>
           </div>
-          <select id="category-select" class="category-select">
+          <select id="category-select" class="category-select mr-5">
             <option value="all">All Categories</option>
             <option value="Editing">Editing</option>
             <option value="Footage">Footage</option>
