@@ -9,19 +9,68 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
   </head>
   <body>
     <!-- Header Section (Always Visible) -->
     <header>
       <nav class="navbar">
         <div class="logo">EduEye-IT <span class="badge">Team</span></div>
+
+        <!-- Desktop links (kept for larger screens) -->
         <ul class="nav-links">
-          <!-- data-page  -->
           <li><a href="#" data-page="home" class="active">Home</a></li>
           <li><a href="#" data-page="task">Task</a></li>
           <li><a href="#" data-page="leaderboard">Leaderboard</a></li>
         </ul>
+
+        <!-- Profile (avatar) -->
+        <div class="nav-right">
+          <button class="profile-btn" id="profileBtn" aria-label="Profile">
+            <img
+              src="https://www.gravatar.com/avatar/?d=identicon&s=40"
+              alt="avatar"
+              class="avatar-sm" />
+          </button>
+
+          <!-- Mobile toggle (shown on small screens) -->
+          <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+            ☰
+          </button>
+        </div>
+
+        <!-- Mobile menu (hidden by default, opens when .nav-open present) -->
+        <div class="mobile-menu" aria-hidden="true">
+          <ul class="nav-links">
+            <li><a href="#" data-page="home" class="active">Home</a></li>
+            <li><a href="#" data-page="task">Task</a></li>
+            <li><a href="#" data-page="leaderboard">Leaderboard</a></li>
+          </ul>
+
+          <!-- optionally show profile in mobile menu -->
+          <div
+            class="mobile-profile"
+            style="
+              margin-top: 8px;
+              display: flex;
+              align-items: center;
+              gap: 8px;
+            ">
+            <img
+              src="https://www.gravatar.com/avatar/?d=identicon&s=40"
+              alt="avatar"
+              class="avatar-sm" />
+            <div
+              class="mobile-profile-name"
+              style="color: var(--text-white); font-weight: 700">
+              You
+            </div>
+          </div>
+        </div>
       </nav>
+
+      <!-- overlay to close menu -->
+      <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
     </header>
 
     <main id="app"></main>

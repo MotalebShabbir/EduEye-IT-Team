@@ -1,0 +1,142 @@
+/* Responsive layout & mobile nav styles (small devices) */
+
+/* Toggle button (hamburger) - hidden by default */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text-white);
+  font-size: 1.25rem;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Mobile menu panel (hidden by default) */
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--secondary);
+  padding: 0.75rem 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  z-index: 120;
+  gap: 0.5rem;
+  flex-direction: column;
+}
+
+/* Mobile overlay to dim content when menu open */
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 110;
+}
+
+/* When navbar has .nav-open, show menu + overlay */
+.navbar.nav-open .mobile-menu {
+  display: flex;
+}
+
+.navbar.nav-open ~ .mobile-overlay,
+.navbar.nav-open .mobile-overlay {
+  display: block;
+}
+
+/* Mobile nav link styles inside panel */
+.mobile-menu .nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0;
+}
+
+.mobile-menu .nav-links a {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: var(--text-white);
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.mobile-menu .nav-links a:hover,
+.mobile-menu .nav-links a.active {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+/* Make profile area touch friendly on mobile */
+.profile-btn {
+  padding: 8px;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Larger tap targets for nav buttons */
+.nav-links a,
+.profile-btn,
+.nav-toggle {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 900px) {
+  /* Hide desktop nav links, show toggle */
+  .nav-links {
+    display: none !important;
+  }
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  /* Move profile to left of toggle for compact layout */
+  .nav-right {
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 560px) {
+  /* Reduce navbar padding on very small screens */
+  .navbar {
+    padding: 0.6rem 0.9rem;
+  }
+
+  .logo {
+    font-size: 1.125rem;
+  }
+
+  /* Mobile menu: full-screen panel for very small devices */
+  .mobile-menu {
+    left: 0;
+    right: 0;
+    top: 100%;
+    padding: 1rem;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .mobile-menu .nav-links a {
+    padding: 0.85rem 0.75rem;
+    font-size: 1rem;
+  }
+}
+
+/* Utility: smooth open transition */
+.mobile-menu {
+  transform-origin: top center;
+  transition: transform 180ms ease, opacity 180ms ease;
+  opacity: 0;
+  transform: translateY(-6px);
+}
+.navbar.nav-open .mobile-menu {
+  opacity: 1;
+  transform: translateY(0);
+}

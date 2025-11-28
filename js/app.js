@@ -36,8 +36,8 @@ const db = getFirestore(app);
 
 // Componaents import
 import { renderHome } from "./components/home.js";
-import { renderAddTask } from "./components/Task.js";
-//import { renderTaskList } from "./components/taskList.js";
+//import { renderTask } from "./components/task.js";
+//import { renderTaskL ist } from "./components/taskList.js";
 import { renderLeaderboard } from "./components/leaderboard.js";
 
 // main app container
@@ -46,7 +46,7 @@ const root = document.getElementById("app");
 // rename components for easier routing
 const routes = {
   home: renderHome,
-  task: renderAddTask,
+  //task: renderTask,
   //"task-list": renderTaskList,
   leaderboard: renderLeaderboard,
 };
