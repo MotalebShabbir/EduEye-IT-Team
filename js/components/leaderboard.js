@@ -27,10 +27,10 @@ function leaderboardHTML() {
           </div>
           <select id="category-select" class="category-select">
             <option value="all">All Categories</option>
-            <option value="Development">Development</option>
-            <option value="Bug">Bug</option>
-            <option value="Research">Research</option>
-            <option value="Documentation">Documentation</option>
+            <option value="Editing">Editing</option>
+            <option value="Footage">Footage</option>
+            <option value="Voice">Voice</option>
+            <option value="Response">Response</option>
           </select>
         </div>
       </header>
@@ -47,67 +47,61 @@ function leaderboardHTML() {
    -------------------------- */
 const sampleTasks = [
   // date in ISO format
-  {
-    id: 1,
-    title: "Fix login bug",
-    category: ["Bug", "Development"],
-    assignedTo: "Aisha",
-    score: 20,
-    date: daysAgoISO(0),
-  },
-  {
-    id: 2,
-    title: "Add profile page",
-    category: ["Development"],
-    assignedTo: "Ravi",
-    score: 35,
-    date: daysAgoISO(2),
-  },
-  {
-    id: 3,
-    title: "Write API docs",
-    category: ["Documentation"],
-    assignedTo: "Aisha",
-    score: 10,
-    date: daysAgoISO(10),
-  },
+
   {
     id: 4,
     title: "Research new auth flow",
-    category: ["Research", "Bug"],
-    assignedTo: "Meera",
+    category: ["Editing", "Footage"],
+    assignedTo: "Ahsan",
     score: 25,
     date: daysAgoISO(5),
   },
   {
     id: 5,
     title: "Refactor dashboard",
-    category: ["Development"],
-    assignedTo: "Ravi",
+    category: ["Footage"],
+    assignedTo: "Mizan",
     score: 15,
     date: daysAgoISO(1),
   },
   {
     id: 6,
-    title: "Critical bug fix",
-    category: ["Bug"],
-    assignedTo: "Karan",
+    title: "Critical Footage fix",
+    category: ["Footage", "Editing"],
+    assignedTo: "Imran",
     score: 40,
     date: daysAgoISO(0),
   },
   {
     id: 7,
     title: "Update README",
-    category: ["Documentation"],
-    assignedTo: "Meera",
+    category: ["Footage", "Response", "Editing"],
+    assignedTo: "Sabbir",
     score: 5,
     date: daysAgoISO(20),
   },
   {
     id: 8,
     title: "Optimize queries",
-    category: ["Development"],
-    assignedTo: "Aisha",
+    category: ["Editing", "Voice"],
+    assignedTo: "Mazed",
+    score: 30,
+    date: daysAgoISO(7),
+  },
+  {
+    id: 8,
+    title: "Optimize queries",
+    category: ["Footage"],
+    assignedTo: "Habib",
+    score: 30,
+    date: daysAgoISO(7),
+  },
+
+  {
+    id: 8,
+    title: "Optimize queries",
+    category: ["Footage"],
+    assignedTo: "Huzaifa",
     score: 30,
     date: daysAgoISO(7),
   },
@@ -200,7 +194,9 @@ function filterTasks(tasks, range, category) {
   return tasks.filter((t) => {
     const td = new Date(t.date);
     const inRange = td >= start && td <= now;
-    const inCategory = category === "all" ? true : t.category === category;
+    const inCategory =
+      category === "all" ? true : t.category.includes(category);
+    console.log(category);
     return inRange && inCategory;
   });
 }
