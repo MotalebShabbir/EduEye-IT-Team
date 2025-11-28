@@ -10,7 +10,8 @@ export function renderHome(root) {
       <section class="welcome-section">
         <div class="welcome-content">
           <h1>Welcome to EduEye IT Team</h1>
-          <p>Manage tasks, track progress, and collaborate with your team</p>
+          <p>Manage tasks, track progress, and collaborate with our team</p>
+          <span class="badge">Feature not available yet. Coming soon.....</span>
         </div>
       </section>
 
