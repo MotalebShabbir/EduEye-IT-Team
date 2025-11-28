@@ -80,13 +80,24 @@ function updateActiveMenu(pageName) {
 // ==========================================
 document.addEventListener("DOMContentLoaded", () => {
   // Load default page
-  navigateTo("auth");
+  navigateTo("home");
 
+  // ========================================
+  // PROFILE BUTTON HANDLER (AUTH PAGE)
+  // ========================================
+  const profileBtn = document.querySelector(".profile-btn");
+  if (profileBtn) {
+    profileBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      navigateTo("auth");
+      // Close mobile menu if open
+      closeMobileMenu();
+    });
+  }
   // ========================================
   // NAVIGATION LINK CLICK HANDLERS
   // ========================================
   const allNavLinks = document.querySelectorAll(".nav-links a");
-
   allNavLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
