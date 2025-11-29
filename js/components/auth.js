@@ -79,64 +79,27 @@ function authHTML() {
 
           <!-- Sign Up Form -->
           <form id="signup-form" class="auth-form space-y-4 hidden">
-            <div>
-              <label class="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
-              <input 
-                type="text" 
-                id="signup-name" 
-                required 
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Enter full name"
-              />
-            </div>
-
-            <div>
-              <label class="block text-sm font-semibold text-gray-700 mb-2">Username</label>
-              <input 
-                type="text" 
-                id="signup-username" 
-                required 
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Choose username"
-              />
-            </div>
-
-            <div>
-              <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
-              <input 
-                type="email" 
-                id="signup-email" 
-                required 
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Enter email"
-              />
-            </div>
-
-            <div>
-              <label class="block text-sm font-semibold text-gray-700 mb-2">Password</label>
-              <input 
-                type="password" 
-                id="signup-password" 
-                required 
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Create password"
-              />
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
+              <p class="text-yellow-800 font-semibold text-sm">Sign Up Temporarily Disabled</p>
+              <p class="text-yellow-700 text-xs mt-1">Registration will be available soon. Please check back later.</p>
             </div>
 
             <div class="space-y-2 pt-2">
               <button 
                 type="submit" 
-                class="w-full px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
+                disabled
+                class="w-full px-4 py-2 bg-gray-400 text-white font-semibold rounded-lg cursor-not-allowed opacity-60"
               >
-                Sign Up
+                Sign Up (Disabled)
               </button>
               <button 
                 type="button" 
                 id="google-signup" 
-                class="w-full px-4 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition flex items-center justify-center gap-2"
+                disabled
+                class="w-full px-4 py-2 bg-gray-400 text-white font-semibold rounded-lg cursor-not-allowed opacity-60 flex items-center justify-center gap-2"
               >
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.85 4.05-1.26 1.24-3.16 2.06-5.99 2.06-4.45 0-8.16-3.67-8.16-8.12s3.71-8.12 8.16-8.12c2.45 0 4.5.78 5.99 2.06l2.45-2.45C19.27 2.75 16.1 1 12.48 1 6.62 1 1.6 6.08 1.6 12s5.02 11 10.88 11c3.02 0 5.52-.998 7.38-3.06 1.84-2.062 2.89-5.102 2.89-8.72 0-.78-.068-1.502-.298-2.3h-10.6z"/></svg>
-                Sign up with Google
+                Sign up with Google (Disabled)
               </button>
             </div>
 
