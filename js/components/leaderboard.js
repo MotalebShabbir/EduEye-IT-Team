@@ -1,23 +1,25 @@
 /**
  * Leaderboard Component
  * - Time filters: Day, Week, Month, All Time
- * - Category filter: All + task categories
- * - Aggregates task scores per member and displays ranked list
+ * - task filter: All + task categories
+ * - Aggregates task points per member and displays ranked list
  */
 
 import { loadSheetData } from "./sheetData.js";
 // Data Loading
+let sampleTasks = [];
 async function getAllData() {
   const data = await loadSheetData();
-  return data;
+  //return data;
+  console.log(data);
+  sampleTasks = data.pointHistory || [];
 }
-
+getAllData();
 // Main render function
 export function renderLeaderboard(root) {
   root.innerHTML = leaderboardHTML();
   initLeaderboard();
 }
-
 /* --------------------------
    MARKUP
    -------------------------- */
@@ -28,13 +30,20 @@ function leaderboardHTML() {
         <h2>Leaderboard</h2>
         <div class="filters">
           <div class="time-filters" role="tablist">
-            <button class="time-btn active" data-range="day">Day</button>
+            <button class="time-btn" data-range="day">Day</button>
             <button class="time-btn" data-range="week">Week</button>
-            <button class="time-btn" data-range="month">Month</button>
+            <button class="time-btn active" data-range="month">Month</button>
             <button class="time-btn" data-range="all">All Time</button>
           </div>
-          <select id="category-select" class="category-select mr-5">
+          <select disabled id="category-select" class="category-select mr-5">
             <option value="all">All Categories</option>
+            <option value="Job">Job</option>
+            <option value="Learning">Learning</option>
+            <option value="Contribution">Contribution</option>
+          </select>
+          <select id="task-select" class="task-select mr-5">
+            <option value="all">All Task</option>
+            <option value="script">Script</option>
             <option value="Editing">Editing</option>
             <option value="Footage">Footage</option>
             <option value="Voice">Voice</option>
@@ -51,82 +60,11 @@ function leaderboardHTML() {
 }
 
 /* --------------------------
-   SAMPLE DATA (replace with real data)
-   -------------------------- */
-const sampleTasks = [
-  // date in ISO format
-
-  {
-    id: 4,
-    title: "Research new auth flow",
-    category: ["Editing", "Footage"],
-    assignedTo: "Ahsan",
-    score: 25,
-    date: daysAgoISO(5),
-  },
-  {
-    id: 5,
-    title: "Refactor dashboard",
-    category: ["Footage"],
-    assignedTo: "Mizan",
-    score: 15,
-    date: daysAgoISO(1),
-  },
-  {
-    id: 6,
-    title: "Critical Footage fix",
-    category: ["Footage", "Editing"],
-    assignedTo: "Imran",
-    score: 40,
-    date: daysAgoISO(0),
-  },
-  {
-    id: 7,
-    title: "Update README",
-    category: ["Footage", "Response", "Editing"],
-    assignedTo: "Sabbir",
-    score: 5,
-    date: daysAgoISO(20),
-  },
-  {
-    id: 8,
-    title: "Optimize queries",
-    category: ["Editing", "Voice"],
-    assignedTo: "Mazed",
-    score: 30,
-    date: daysAgoISO(7),
-  },
-  {
-    id: 8,
-    title: "Optimize queries",
-    category: ["Footage"],
-    assignedTo: "Habib",
-    score: 30,
-    date: daysAgoISO(7),
-  },
-
-  {
-    id: 8,
-    title: "Optimize queries",
-    category: ["Footage"],
-    assignedTo: "Huzaifa",
-    score: 30,
-    date: daysAgoISO(7),
-  },
-];
-
-function daysAgoISO(n) {
-  const d = new Date();
-  d.setDate(d.getDate() - n);
-  return d.toISOString();
-}
-
-/* --------------------------
    Initialization & Events
    -------------------------- */
 function initLeaderboard() {
   const timeBtns = document.querySelectorAll(".time-btn");
-  const categorySelect = document.getElementById("category-select");
+  const taskSelect = document.getElementById("task-select");
 
   timeBtns.forEach((btn) =>
     btn.addEventListener("click", (e) => {
@@ -136,7 +74,7 @@ function initLeaderboard() {
     })
   );
 
-  categorySelect.addEventListener("change", () => renderList());
+  taskSelect.addEventListener("change", () => renderList());
 
   // initial render
   renderList();
@@ -147,12 +85,12 @@ function initLeaderboard() {
    -------------------------- */
 function renderList() {
   const activeRange =
-    document.querySelector(".time-btn.active")?.dataset.range || "day";
-  const category = document.getElementById("category-select")?.value || "all";
+    document.querySelector(".time-btn.active")?.dataset.range || "week";
+  const task = document.getElementById("task-select")?.value || "all";
 
-  const filtered = filterTasks(sampleTasks, activeRange, category);
+  const filtered = filterTasks(sampleTasks, activeRange, task);
   const aggregated = aggregateByMember(filtered);
-  const sorted = aggregated.sort((a, b) => b.score - a.score);
+  const sorted = aggregated.sort((a, b) => b.point - a.point);
 
   const container = document.getElementById("leaderboard-list");
   container.innerHTML = sorted.length
@@ -161,15 +99,15 @@ function renderList() {
 }
 
 function emptyStateHTML() {
-  return `<div class="empty-state">No results for selected range / category</div>`;
+  return `<div class="empty-state">No results for selected range / task</div>`;
 }
 
 function renderMemberRow(member, index) {
   const rank = index + 1;
-  const score = member.score;
+  const point = member.point;
   const pct = Math.min(
     100,
-    Math.round((score / sortedMaxScorePlaceholder()) * 100)
+    Math.round((point / sortedMaxpointPlaceholder()) * 100)
   ); // visual bar
   return `
     <div class="leader-row">
@@ -178,10 +116,10 @@ function renderMemberRow(member, index) {
       <div class="member-info">
         <div class="member-name">${escapeHtml(member.name)}</div>
         <div class="member-meta">${member.count} tasks • ${
-    member.topCategory || "—"
+    member.topTask || "—"
   }</div>
       </div>
-      <div class="score">${score}</div>
+      <div class="point">${point}</div>
       <div class="progress-bar"><div class="progress" style="width:${pct}%"></div></div>
     </div>
   `;
@@ -190,7 +128,7 @@ function renderMemberRow(member, index) {
 /* --------------------------
    Data helpers
    -------------------------- */
-function filterTasks(tasks, range, category) {
+function filterTasks(tasks, range, task) {
   const now = new Date();
   let start = new Date(0); // epoch for 'all'
   if (range === "day") start = new Date(now.getTime() - 24 * 60 * 60 * 1000);
@@ -202,10 +140,9 @@ function filterTasks(tasks, range, category) {
   return tasks.filter((t) => {
     const td = new Date(t.date);
     const inRange = td >= start && td <= now;
-    const inCategory =
-      category === "all" ? true : t.category.includes(category);
-    console.log(category);
-    return inRange && inCategory;
+    const intask = task === "all" ? true : t.task.includes(task);
+    console.log(task);
+    return inRange && intask;
   });
 }
 
@@ -213,18 +150,18 @@ function aggregateByMember(tasks) {
   const map = new Map();
   for (const t of tasks) {
     const name = t.assignedTo;
-    const entry = map.get(name) || { name, score: 0, count: 0, categories: {} };
-    entry.score += Number(t.score) || 0;
+    const entry = map.get(name) || { name, point: 0, count: 0, categories: {} };
+    entry.point += Number(t.point) || 0;
     entry.count += 1;
-    entry.categories[t.category] = (entry.categories[t.category] || 0) + 1;
+    entry.categories[t.task] = (entry.categories[t.task] || 0) + 1;
     map.set(name, entry);
   }
   const arr = Array.from(map.values()).map((e) => {
-    // determine top category for display
-    const topCategory = Object.keys(e.categories).sort(
+    // determine top task for display
+    const topTask = Object.keys(e.categories).sort(
       (a, b) => e.categories[b] - e.categories[a]
     )[0];
-    return { name: e.name, score: e.score, count: e.count, topCategory };
+    return { name: e.name, point: e.point, count: e.count, topTask };
   });
   return arr;
 }
@@ -251,11 +188,11 @@ function escapeHtml(str) {
   );
 }
 
-// placeholder: compute max score for progress calculations
-function sortedMaxScorePlaceholder() {
+// placeholder: compute max point for progress calculations
+function sortedMaxpointPlaceholder() {
   // compute max from current rendered data to scale bars better
   const list = document.querySelectorAll(
-    "#leaderboard-list .leader-row .score"
+    "#leaderboard-list .leader-row .point"
   );
   let max = 0;
   list.forEach((el) => {

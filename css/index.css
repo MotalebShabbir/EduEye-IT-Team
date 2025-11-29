@@ -461,6 +461,7 @@ footer {
   box-shadow: 0 6px 18px rgba(52, 152, 219, 0.15);
 }
 
+.task-select,
 .category-select {
   padding: 0.45rem 0.6rem;
   border-radius: 8px;

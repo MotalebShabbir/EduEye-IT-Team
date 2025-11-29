@@ -80,7 +80,7 @@ function updateActiveMenu(pageName) {
 // ==========================================
 document.addEventListener("DOMContentLoaded", () => {
   // Load default page
-  navigateTo("home");
+  navigateTo("leaderboard");
 
   // ========================================
   // PROFILE BUTTON HANDLER (AUTH PAGE)

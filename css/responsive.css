@@ -172,6 +172,7 @@
     flex-wrap: wrap;
   }
 
+  .task-select,
   .category-select {
     flex: 1;
     min-width: 150px;
@@ -240,6 +241,7 @@
     font-size: 0.8rem;
   }
 
+  .task-select,
   .category-select {
     width: 100%;
     padding: 0.35rem;
@@ -331,6 +333,7 @@
     box-shadow: 0 3px 10px rgba(52, 152, 219, 0.2);
   }
 
+  .task-select,
   .category-select {
     width: 100%;
     padding: 0.3rem;
@@ -416,6 +419,7 @@
     font-size: 0.65rem;
   }
 
+  .task-select,
   .category-select {
     font-size: 0.8rem;
     padding: 0.25rem;
@@ -465,6 +469,7 @@
     touch-action: manipulation;
   }
 
+  .task-select,
   .category-select {
     -webkit-appearance: none;
     appearance: none;
