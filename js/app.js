@@ -37,7 +37,7 @@ const db = getFirestore(app);
 // Componaents import
 import { renderHome } from "./components/home.js";
 import { renderAuth } from "./components/auth.js";
-//import { renderTaskL ist } from "./components/taskList.js";
+//import { LoadSheetData } from "./components/sheetData.js";
 import { renderLeaderboard } from "./components/leaderboard.js";
 
 // main app container

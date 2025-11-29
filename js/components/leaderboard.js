@@ -5,6 +5,14 @@
  * - Aggregates task scores per member and displays ranked list
  */
 
+import { loadSheetData } from "./sheetData.js";
+// Data Loading
+async function getAllData() {
+  const data = await loadSheetData();
+  return data;
+}
+
+// Main render function
 export function renderLeaderboard(root) {
   root.innerHTML = leaderboardHTML();
   initLeaderboard();
