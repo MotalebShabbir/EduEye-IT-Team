@@ -13,6 +13,7 @@ async function getAllData() {
   //return data;
   console.log(data);
   sampleTasks = data.pointHistory || [];
+  initLeaderboard();
 }
 getAllData();
 // Main render function
@@ -43,11 +44,12 @@ function leaderboardHTML() {
           </select>
           <select id="task-select" class="task-select mr-5">
             <option value="all">All Task</option>
-            <option value="script">Script</option>
-            <option value="Editing">Editing</option>
-            <option value="Footage">Footage</option>
+            <option value="Script">Script</option>
+            <option value="Distribution">Distribution</option>
             <option value="Voice">Voice</option>
-            <option value="Response">Response</option>
+            <option value="Footage">Footage</option>
+            <option value="Editing">Editing</option>
+            <option value="Thumbnail">Thumbnail</option>
           </select>
         </div>
       </header>
