@@ -33,23 +33,26 @@ function leaderboardHTML() {
           <div class="time-filters" role="tablist">
             <button class="time-btn" data-range="day">Day</button>
             <button class="time-btn" data-range="week">Week</button>
-            <button class="time-btn active" data-range="month">Month</button>
-            <button class="time-btn" data-range="all">All Time</button>
+            <button class="time-btn active " data-range="month">Month</button>
+            <button class="time-btn " data-range="all">All Time</button>
           </div>
           <select disabled id="category-select" class="category-select mr-5">
             <option value="all">All Categories</option>
-            <option value="Job">Job</option>
+            <option value="videoJob" selected >Video Job</option>
             <option value="Learning">Learning</option>
             <option value="Contribution">Contribution</option>
           </select>
           <select id="task-select" class="task-select mr-5">
             <option value="all">All Task</option>
+            <option value="Management">Management</option>
             <option value="Script">Script</option>
-            <option value="Distribution">Distribution</option>
             <option value="Voice">Voice</option>
             <option value="Footage">Footage</option>
             <option value="Editing">Editing</option>
             <option value="Thumbnail">Thumbnail</option>
+            <option value="Upload">SEO&Upload</option>
+            <option value="Contribution">Contribution</option>
+            <option value="Penalty">Penalty</option>
           </select>
         </div>
       </header>
@@ -117,11 +120,11 @@ function renderMemberRow(member, index) {
       <div class="avatar">${initials(member.name)}</div>
       <div class="member-info">
         <div class="member-name">${escapeHtml(member.name)}</div>
-        <div class="member-meta">${member.count} tasks • ${
+        <div class="member-meta">${member.count} tasks <!--• ${
     member.topTask || "—"
-  }</div>
+  } --> </div>
       </div>
-      <div class="point">${point}</div>
+      <div class="point text-${point > 0 ? "green" : "red"}-600" >${point}</div>
       <div class="progress-bar"><div class="progress" style="width:${pct}%"></div></div>
     </div>
   `;
